@@ -22,11 +22,13 @@ public class Ex3 {
         protected void advance() {
             long temp = prev;
             prev = current;
-            // Removed Math.abs() to allow negative values
-            current = current - temp;
+            // Using Math.abs() as required by the assignment instructions
+            current = Math.abs(current - temp);
         }
 
         public static void main(String[] args) {
+
+            System.out.println("Author: Aiden Wang\n");
             System.out.print("Default DiffProgression: ");
             Progression p1 = new DiffProgression();
             p1.printProgression(5);

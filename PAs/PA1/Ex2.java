@@ -9,6 +9,7 @@ public class Ex2 {
     public static void main(String[] args) {
         Random rand = new Random();
 
+        System.out.println("Author: Aiden Wang\n");
         System.out.println("| People | Count | Percent |");
         System.out.println("| ------ | ------ | ------- |");
 

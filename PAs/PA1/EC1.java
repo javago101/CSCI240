@@ -14,6 +14,9 @@ import java.util.Random;
 public class EC1 {
 
     public static void main(String[] args) {
+
+        System.out.println("Author: Aiden Wang\n");
+
         String baseSentence = "I will never spam my friends again.";
         int numLines = 50;
         int numMistakes = 10;

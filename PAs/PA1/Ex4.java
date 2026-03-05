@@ -64,6 +64,7 @@ public class Ex4 {
             MyCreditCard card1 = new MyCreditCard("Aiden", "Bank of Java", "1234", 5000, 0, 0.10);
             MyCreditCard card2 = new MyCreditCard("Alice", "C++ Federation", "5678", 2000, 0, 0.10);
 
+            System.out.println("Author: Aiden Wang\n");
             System.out.println("--- 6-Month Simulation ---");
             // 2. Simulate 6 months
             for (int month = 1; month <= 6; month++) {
