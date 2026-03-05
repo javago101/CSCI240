@@ -28,6 +28,7 @@ class Ex1 {
         int[] test1 = {5, 7, 2, 6, 4};
         int[] test2 = {5, 7, 2, 2, 5, 6, 4, 2};
 
+        System.out.println("Author: Aiden Wang\n");
         System.out.println("Test 1 (5, 7, 2, 6, 4) result: " + countDuplicates(test1));
         System.out.println("Test 2 (5, 7, 2, 2, 5, 6, 4, 2) result: " + countDuplicates(test2));
     }
