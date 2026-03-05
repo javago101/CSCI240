@@ -10,33 +10,26 @@ Exception(s): N/A
 package PA1;
 
 class Ex1 {
-// Ex 1: count duplicate pairs
-
-    public static int countDuplicates(int[] arr){
+    // Accepts an array of int values and returns the count of duplicate pairs
+    public static int countDuplicates(int[] arr) {
         int count = 0;
-
-        // compare each element with every element that comes after it
-        for (int i = 0; i < arr.length; i++ ){
-            for (int j = i + 1; j < arr.length; j++){
-                if(arr[i] == arr[j]){
+        // Compare each element with every element that comes after it
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i] == arr[j]) {
                     count++;
                 }
             }
         }
-
         return count;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
+        int[] test1 = {5, 7, 2, 6, 4};
+        int[] test2 = {5, 7, 2, 2, 5, 6, 4, 2};
 
-        // testing case for Ex1
-
-        int[] case1 = {5,7,2,6,4};
-        int[] case2 = {5,7,2,2,5,6,4,2};
-
-       System.out.println("test 1 (expected 0):" + countDuplicates(case1));
-
-       System.out.println("test 2 (expected 4):" + countDuplicates(case2));
+        System.out.println("Test 1 (5, 7, 2, 6, 4) result: " + countDuplicates(test1));
+        System.out.println("Test 2 (5, 7, 2, 2, 5, 6, 4, 2) result: " + countDuplicates(test2));
     }
-
 }
+
