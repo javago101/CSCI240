@@ -123,4 +123,9 @@ public abstract class AbstractMap<K,V> implements Map<K,V> {
    */
   @Override
   public Iterable<V> values() { return new ValueIterable(); }
+
+  @Override
+  public boolean containsKey(K key) {
+    return get(key) != null;
+  }
 }

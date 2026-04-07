@@ -6,6 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$/PAs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/chapters" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src_code" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/All_in_one" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Hks" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

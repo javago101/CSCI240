@@ -50,6 +50,11 @@ public class UnsortedTableMap<K,V> extends AbstractMap<K,V> {
     return -1;                                   // special value denotes that key was not found
   }
 
+  @Override
+  public boolean containsKey(K key) {
+    return findIndex(key) != -1;
+  }
+
   // public methods
   /**
    * Returns the number of entries in the map.

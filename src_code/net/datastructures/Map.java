@@ -92,4 +92,6 @@ public interface Map<K,V> {
    * @return iterable collection of the map's entries
    */
   Iterable<Entry<K,V>> entrySet();
+
+  boolean containsKey(K src);
 }

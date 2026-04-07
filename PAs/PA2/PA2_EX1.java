@@ -6,11 +6,12 @@ Description:
 I certify that the code below is my own work.
 Exception(s): N/A
 */
+// Modified by: Aiden Wang
 package PA2;
 
 import java.util.Random;
 
-public class EX1 {
+public class PA2_EX1 {
 
     // O(n^2) Algorithm
     public static double[] prefixAverage1(double[] x) {
@@ -38,7 +39,7 @@ public class EX1 {
         return a;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] pras ) {
         System.out.println("Author: Aiden Wang\n");
 
         // 1. Test case to confirm correctness
