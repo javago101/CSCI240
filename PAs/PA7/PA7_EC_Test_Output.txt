@@ -1,0 +1,42 @@
+=== PA7 Extra Credit 1 Terminal Output ===
+Modified by: Aiden Wang
+
+Unique words extracted from US Declaration of Independence: 539
+
+=== Extra Credit 1: Cyclic-Shift Hash Collision Rates ===
+Cyclic Shift Parameter [shift = 0] -> Produced Collisions: 178
+Cyclic Shift Parameter [shift = 1] -> Produced Collisions: 22
+Cyclic Shift Parameter [shift = 5] -> Produced Collisions: 0
+Cyclic Shift Parameter [shift = 13] -> Produced Collisions: 0
+
+Conclusion: A shift of '0' produces an immense sum of collisions exactly because it fails to physically shift/mix the bits across positions, equivalent to simple character addition.
+
+
+=== PA7 Extra Credit 2 Terminal Output ===
+Modified by: Aiden Wang
+
+=== PA7 Extra Credit Option 2: Chain Hashing Probing Tests ===
+
+Load Factor: 0.25
+-------------------------
+Table Size (N/LF)   : 400000
+Average Probes      : 1.0000
+Maximum Worst Probes: 1
+
+Load Factor: 0.5
+-------------------------
+Table Size (N/LF)   : 200000
+Average Probes      : 1.0000
+Maximum Worst Probes: 1
+
+Load Factor: 0.75
+-------------------------
+Table Size (N/LF)   : 133334
+Average Probes      : 2.3935
+Maximum Worst Probes: 6
+
+Load Factor: 0.9
+-------------------------
+Table Size (N/LF)   : 111112
+Average Probes      : 2.0142
+Maximum Worst Probes: 6
