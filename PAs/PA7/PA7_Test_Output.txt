@@ -1,0 +1,67 @@
+=== PA7 Ex1 Terminal Output ===
+Modified by: Aiden Wang
+
+=== Part A: Manual HashMap Operations ===
+Inserting keys: 13 21 5 37 15 
+Searched for 10 -> Not Found.
+Searched for 21 -> Found! Value: 12
+
+> Removing 20 and 37...
+Searched for 37 -> Not Found.
+
+> Map Entries via Iterator:
+Key: 21 -> Value: 12
+Key: 5 -> Value: 5
+Key: 13 -> Value: 31
+Key: 15 -> Value: 51
+
+=== Part B: Inserting small1k.txt ===
+Successfully inserted 1000 elements into HashMap.
+Time taken: 1 ms
+
+=== Part C: Inserting large100k.txt ===
+Successfully inserted 100000 elements into HashMap.
+Time taken: 12 ms
+Notice how inserting 100,000 items takes roughly 100 times slower than 1,000 items, verifying the O(1) amortized insertion profile!
+
+
+=== PA7 Ex2 Terminal Output ===
+Modified by: Aiden Wang
+
+=== Part A: Manual ChainHashMap Operations ===
+Inserting keys: 13 21 5 37 15 
+Searched for 10 -> Not Found.
+Searched for 21 -> Found! Value: 12
+
+> Removing 20 and 37...
+Searched for 37 -> Not Found.
+
+> Map Entries via Iterator:
+Key: 15 -> Value: 51
+Key: 21 -> Value: 12
+Key: 5 -> Value: 5
+Key: 13 -> Value: 31
+
+=== Part B: Inserting small1k.txt ===
+Successfully inserted 1000 elements into ChainHashMap.
+Time taken: 2 ms
+
+=== Part C: Inserting large100k.txt ===
+Successfully inserted 100000 elements into ChainHashMap.
+Time taken: 52 ms
+Notice how they are very similar to the times in exercise 1!
+
+
+=== PA7 Ex3 Terminal Output ===
+Modified by: Aiden Wang
+
+Total unique words extracted from US Declaration of Independence: 539
+
+=== Comparative Analysis of Polynomial Hash Collision Rates ===
+Polynomial Hash Parameter [a = 1] -> Produced Collisions: 178
+Polynomial Hash Parameter [a = 37] -> Produced Collisions: 0
+Polynomial Hash Parameter [a = 40] -> Produced Collisions: 0
+Polynomial Hash Parameter [a = 41] -> Produced Collisions: 0
+
+Conclusion: As expected, 'a = 1' produces a massive amount of collisions compared to 37, 40, or 41.
+This is because an 'a' parameter of 1 essentially degrades the polynomial hash to a simple summation of ASCII characters.
