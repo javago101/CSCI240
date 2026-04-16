@@ -37,18 +37,18 @@ Searched for 21 -> Found! Value: 12
 Searched for 37 -> Not Found.
 
 > Map Entries via Iterator:
-Key: 15 -> Value: 51
-Key: 21 -> Value: 12
-Key: 5 -> Value: 5
 Key: 13 -> Value: 31
+Key: 5 -> Value: 5
+Key: 21 -> Value: 12
+Key: 15 -> Value: 51
 
 === Part B: Inserting small1k.txt ===
 Successfully inserted 1000 elements into ChainHashMap.
-Time taken: 2 ms
+Time taken: 3 ms
 
 === Part C: Inserting large100k.txt ===
 Successfully inserted 100000 elements into ChainHashMap.
-Time taken: 52 ms
+Time taken: 51 ms
 Notice how they are very similar to the times in exercise 1!
 
 
@@ -65,3 +65,47 @@ Polynomial Hash Parameter [a = 41] -> Produced Collisions: 0
 
 Conclusion: As expected, 'a = 1' produces a massive amount of collisions compared to 37, 40, or 41.
 This is because an 'a' parameter of 1 essentially degrades the polynomial hash to a simple summation of ASCII characters.
+
+
+=== PA7 Extra Credit 1 Terminal Output ===
+Modified by: Aiden Wang
+
+Unique words extracted from US Declaration of Independence: 539
+
+=== Extra Credit 1: Cyclic-Shift Hash Collision Rates ===
+Cyclic Shift Parameter [shift = 0] -> Produced Collisions: 178
+Cyclic Shift Parameter [shift = 1] -> Produced Collisions: 22
+Cyclic Shift Parameter [shift = 5] -> Produced Collisions: 0
+Cyclic Shift Parameter [shift = 13] -> Produced Collisions: 0
+
+Conclusion: A shift of '0' produces an immense sum of collisions exactly because it fails to physically shift/mix the bits across positions, equivalent to simple character addition.
+
+
+=== PA7 Extra Credit 2 Terminal Output ===
+Modified by: Aiden Wang
+
+=== PA7 Extra Credit Option 2: Chain Hashing Probing Tests ===
+
+Load Factor: 0.25
+-------------------------
+Table Size (N/LF)   : 400000
+Average Probes      : 1.5042
+Maximum Worst Probes: 3
+
+Load Factor: 0.5
+-------------------------
+Table Size (N/LF)   : 200000
+Average Probes      : 1.0189
+Maximum Worst Probes: 2
+
+Load Factor: 0.75
+-------------------------
+Table Size (N/LF)   : 133334
+Average Probes      : 1.7489
+Maximum Worst Probes: 2
+
+Load Factor: 0.9
+-------------------------
+Table Size (N/LF)   : 111112
+Average Probes      : 1.6943
+Maximum Worst Probes: 2
