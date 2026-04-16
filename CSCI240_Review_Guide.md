@@ -1,70 +1,72 @@
-# CSCI240 Cumulative Review & Study Guide
+# CSCI240 Cumulative Review & Deep-Dive Study Guide
 
-Welcome to your ultimate review document for CSCI 240! You have successfully conquered **Programming Assignments 1 through 7**. The combination of these PAs fully captures the architectural ascent from basic variables all the way up to complex algorithm collision handling.
+Welcome to the **Comprehensive Review Document** for CSCI 240. This guide breaks down Programming Assignments 1 through 7, covering every major data structure, internal mechanics, Big-O time complexities, and mathematical algorithms you have learned this semester. 
 
-Use this guide to align your final learning goals, track the conceptual workload, and review the pivotal learning points ahead of exams.
-
----
-
-## 📚 General Course Workload Profile
-**Total Practical PAs Completed**: 7 (Plus numerous Full-Credit Extra Credit Modules)
-**Code Strategy Used**: Native IDE Compilation (`javac`) & Textbook Package integration (`net.datastructures.*`)
-**Overall Completion**: 100%
+This guide is heavily expanded to cover the **"under the hood"** details essential for acing midterms and finals!
 
 ---
 
-## PA1: Java Primer & Object-Oriented Principles
-* **Core Topics**: Encapsulation, Classes, Polymorphism.
-* **Key Files**: `CreditCard.java`, `Progression.java`
-* **Learning Points**:
-  - Setting up constructor syntax and overriding methods (`toString()`, `clone()`).
-  - Leveraging Java's core inheritance modeling to prevent redundant code.
+## 📚 General Big-O Complexity Cheat Sheet
 
-## PA2: Fundamental Arrays & Node Structuring
-* **Core Topics**: Array traversals, Primitive Singly Linked Lists.
-* **Key Files**: `PA2_EX*` suite.
-* **Learning Points**:
-  - Memory difference between rigid Array indexes versus dynamic `Node` configurations.
-  - Linking un-initialized space pointers (`node.next`).
+Before diving into the PAs, memorize these average-case time complexities which govern all the assignments:
+| Data Structure | Access/Search | Insertion | Deletion | Notes |
+|---|---|---|---|---|
+| **Array** | $O(1)$ | $O(n)$ | $O(n)$ | Fast read, terrible insert without gaps. |
+| **Singly Linked** | $O(n)$ | $O(1)$* | $O(1)$* | *Fast if inserting/deleting at Known nodes (Head/Tail). |
+| **Stack/Queue** | N/A | $O(1)$ | $O(1)$ | Pure $O(1)$ amortized operations. |
+| **Binary Tree** | $O(\log n)$ | $O(\log n)$ | $O(\log n)$ | Assuming balanced. If unbalanced, degrading to $O(n)$. |
+| **Binary Heap** | $O(n)$ | $O(\log n)$ | $O(\log n)$ | $O(1)$ to find Min/Max. Very fast sorting. |
+| **Hash Table** | $O(1)$ | $O(1)$ | $O(1)$ | Amortized. If Load Factor is ignored, degrades to $O(n)$. |
+
+---
+
+## PA1 & PA2: Java OOP, Arrays, & Node Linking
+### Core Deep Dive
+* **Generics `<E>`**: Used pervasively so that classes like `SinglyLinkedList<E>` can hold Integers, Strings, or Objects interchangeably without throwing `ClassCastException` later.
+* **Nodes**: The building block of dynamic memory. A Singly Linked Node possesses two things: `element` (the data) and `next` (a pointer to the next node).
+  * **Memory Hazard**: If you lose the `head` pointer, the entire list is lost and garbage collected.
+  * **Doubly Linked Lists**: Adds a `prev` pointer. It makes deletion at the tail $O(1)$ since you don't have to traverse from head to find the second-to-last node!
 
 ## PA3: Positional Lists & Iterators
-* **Core Topics**: Decoupling the "node index" using Position handles.
-* **Key Files**: LinkedPositionalList tests (`PA3_Ex2, PA3_Ex3`).
-* **Learning Points**:
-  - How an abstraction like `Position<E>` allows users to safely track list items without knowing array offsets or exposing internal memory Nodes.
-  - Using iterators to rapidly cycle lists.
+### Core Deep Dive
+* **The Position Abstraction**: Why do we use `Position<E>`? If a user wants to delete an element in the middle of a standard List, they have to loop $O(n)$ to find it. But if the list returns a `Position` token back to the user, the user can say `list.remove(positionMarker)`, and the underlying algorithm does it in **$O(1)$** time because the `Position` secretly holds the raw memory address.
+* **Iterators**: `hasNext()` and `next()`. Understand that `Iterable` means an object *can return* an `Iterator`, while `Iterator` is the object actively traversing.
 
 ## PA4: Abstract Storage (Stacks, Queues, Deques)
-* **Core Topics**: LIFO / FIFO architectural implementation.
-* **Key Files**: `MyArrayStack.java`, `MyLinkedQueue.java`, `MyLinkedDeque.java`
-* **Learning Points**:
-  - Realizing Stacks (Last In, First Out) are perfect for back-tracking apps and Queues (First In, First Out) handle OS job logic.
-  - Deques (Double-ended Queues) prove how versatile Linked Nodes become when you map `prev` and `next` limits correctly.
+### Core Deep Dive
+* **LIFO (Stacks)**: Think of method call stacks or undo mechanisms. Usually strictly $O(1)$ via Arrays (tracking a single `t` top index) or Linked Lists (inserting at head).
+* **FIFO (Queues)**: Think of OS tasks or ticketing. 
+  * **Circular Array Formula**: Essential exam question! If implementing a Queue with an Array, when the `tail` index hits `N-1`, it must wrap around. The mathematical formula is: `nextIndex = (currentIndex + 1) % N`. 
+* **Deques**: You can insert or remove from BOTH ends in $O(1)$ time natively.
 
-## PA5: Advanced Hierarchies (Binary Trees)
-* **Core Topics**: Tree logic and Recursive Traversal.
-* **Key Files**: `LinkedBinaryTree.java`, `PA5_Ex3.java`
-* **Learning Points**:
-  - Navigating left vs right children.
-  - Mastering the three primary depth traversals: Pre-order (Node -> L -> R), In-order (L -> Node -> R), Post-order (L -> R -> Node). Essential for exam analysis.
+## PA5: Generic Trees & Binary Trees
+### Core Deep Dive
+* **Binary Node Architecture**: Made of `element`, `parent`, `left`, `right`.
+* **Tree Depth and Height Formulas**:
+  * **Depth** of $p$: How many ancestors are above it. `if (p == root) return 0; else return 1 + depth(parent(p))`.
+  * **Height** of tree: The maximum depth of any leaf. 
+* **Traversals (Crucial for Exams)**:
+  1. **Pre-order (N-L-R)**: Root is visited *before* children. Used for duplicating a tree.
+  2. **In-order (L-N-R)**: Left child, then Root, then Right. In a Binary Search Tree, this prints elements in strictly increasing sorted order!
+  3. **Post-order (L-R-N)**: Root is visited *after* children. Used for deleting a tree or calculating folder sizes bottom-up.
 
-## PA6: Priority Queues, Heaps & Scaling Factors $O(N \log N)$
-* **Core Topics**: Time complexity, Min/Max comparators, standard PQs vs Heaps.
-* **Key Files**: `SortedPriorityQueue` vs `HeapPriorityQueue`.
-* **Learning Points**:
-  - Implementing custom Comparators to flip sorts (descending strings etc).
-  - Experiencing firsthand how a standard Queue faces a critical bottleneck tracing arrays ($O(n^2)$), compared to the extreme efficiency of a proper Binary Heap sorting 10万 entries near-instantly ($O(N \log N)$).
+## PA6: Priority Queues & Heaps
+### Core Deep Dive
+* **Priority Queue Bottleneck**: In PA6, we proved why standard arrays fail. Sorting 100k items using an Array takes $O(n^2)$ (about 30 seconds), but a Binary Heap takes $O(n \log n)$ (about 100ms).
+* **The Array-Based Heap Map**: Rather than using linked nodes, Heaps map a binary tree mathematically onto a flat array:
+  * Left child of index `i` is at: `2i + 1`
+  * Right child of index `i` is at: `2i + 2`
+  * Parent of index `i` is at: `(i - 1) / 2`
+* **Upheap & Downheap**: 
+  * Inserting: place element at array end, then *Upheap* (bubble up) taking $O(\log n)$.
+  * Removing Min: swap root with array end, delete end, then *Downheap* (bubble down) taking $O(\log n)$.
 
-## PA7: Hash Maps, Collision Mathematics & Probing
-* **Core Topics**: Dispersing keys optimally across arrays.
-* **Key Files**: Native `HashMap`, Textbook `ChainHashMap`, `polynomial/cyclicHash`.
-* **Learning Points**:
-  - If a map gets too loaded, lookup speeds degrade linearly toward $O(N)$ due to linked list collisions ("Probing").
-  - The parameter of the hash matters universally: a simple cyclic shift of 0 completely destroys data dispersion, proving random distribution theories mathematically.
-
----
-
-### 🚀 Final Review Strategies for Exams:
-1. **Focus on Trees vs PQs**: Be able to trace a Priority Queue `removeMin()` operation mentally. Know how it flips the last node to root, then "Bubbles Down".
-2. **Hash Definitions**: Memorize what "Load Factor" (LF) refers to computationally (`LF = Size / Array Capacity`). Know why 0.75 is the industry standard default. 
-3. **Execution Speeds**: Be able to write out the Big-O notations for worst-case inserts on Arrays vs Hashes vs Binary Trees.
+## PA7: Hash Maps & Collision Mathematics
+### Core Deep Dive
+* **Load Factor (`LF`)**: The ratio of `Size / Capacity`. If LF exceeds $0.75$, collisions drastically increase and the HashMap triggers typically an expensive `resize()` scaling array size by $2\times$.
+* **Hash Functions**: A hash function has two parts: `HashCode` (creates integer) + `Compression Map` (fits integer into array bounds).
+  * **Cyclic-Shift Hash Codes**: Bitwise operators `(hash << shift) | (hash >>> 32 - shift)`. We proved that a shift of `0` is catastrophically bad because "cat" and "act" would result in the exact same index. 
+  * **MAD (Multiply-Add-Divide)** Compression: `[(a * hash + b) % prime] % capacity`. Using random primes scatters numbers excellently.
+* **Collision Resolution**:
+  * **Separate Chaining (What we built)**: Each bucket points to a mini ArrayList or Map. If a bucket gets 5 items, searching it takes 5 probes. Safe, but consumes more memory.
+  * **Open Addressing / Probing**: Finding the next empty slot physically down the array. (Linear Probing $i+1$, Quadratic Probing $i^2$). If the table gets full, insertion causes infinite loops.
