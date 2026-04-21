@@ -42,3 +42,14 @@ Use this document to quickly memorize the standard English computer-science defi
 - **Open Addressing (Probing)**: (The `ProbeHashMap`). If variables collide at Index 5, the program physically slides down the main array to find the next available empty spot.
   - **Linear Probing**: Searches $i+1, i+2, i+3$... Prone to primary "clustering".
   - **Quadratic Probing**: Searches $i+1^2, i+2^2, i+3^2$...
+
+## 6. Programming Assignments (PA1-PA7) Concrete Memory Hooks
+When you get tested on these abstract concepts, recall the exact code you wrote in your CSCI240 assignments:
+
+- **PA1 (Object-Oriented Design)**: *Memory Hook - The Credit Card*. You demonstrated **Polymorphism** and **Encapsulation** by preventing users from directly modifying the balance without going through `charge()` or `makePayment()`.
+- **PA2 (Arrays & Basic Nodes)**: *Memory Hook - The Singly Linked List*. You manually set `node.next = newNode`. You learned that losing the `Head` pointer destroys the entire list.
+- **PA3 (Positional Lists)**: *Memory Hook - The Text Editor Cursor*. Instead of moving across an array by computing `index+1` (which becomes slow for huge strings), you used a `Position` interface as a "cursor". `list.addBefore(cursor, 'A')` ran in absolutely instant $O(1)$ time because the Position already knew its memory address.
+- **PA4 (Stacks & Queues)**: *Memory Hook - OS Job Scheduler*. You applied **FIFO (First-In, First-Out)** logic for Queues to process items historically, and proved that a Queue implemented via an array absolutely requires "Modulo Math" `(f + 1) % N` to wrap the tail around to the front.
+- **PA5 (Binary Trees)**: *Memory Hook - Recursive Tree Depth*. You executed DFS (Depth-First Search) traversals. You memorized that `Pre-order` hits the Root first, making it perfect for printing folders/directories.
+- **PA6 (Priority Queues & Heaps)**: *Memory Hook - Sorting 100k items*. You overrode standard algorithms with a **Comparator** to sort strings strictly in descending order. You mathematically proved that swapping an Array $O(N^2)$ for a Binary Heap $O(N \log N)$ dropped the sorting time from 30 seconds down to practically 0 milliseconds.
+- **PA7 (Hash Codes & Load Factors)**: *Memory Hook - The Declaration of Independence*. You inserted 100,000 words. When you forced the **Cyclic-Shift** hash parameter to `0`, all the binary bits stayed exactly overlapping, resulting in `178` catastrophic collisions because the bitwise mixing failed. When you established a capacity equal to `size / 0.75`, the program fired identically fast $O(1)$ inserts and bypassed Rehashing entirely.
