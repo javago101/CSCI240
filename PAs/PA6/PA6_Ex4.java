@@ -1,4 +1,4 @@
-package PAs.PA6;
+package PA6;
 
 import net.datastructures.Entry;
 import net.datastructures.HeapPriorityQueue;
@@ -33,7 +33,8 @@ public class PA6_Ex4 {
     public static void sortAndMeasure(String filename, int expectedSize) {
         List<Integer> data = new ArrayList<>(expectedSize);
 
-        // Read all data into memory first to avoid counting Disk I/O towards sorting runtime
+        // Read all data into memory first to avoid counting Disk I/O towards sorting
+        // runtime
         try (Scanner scanner = new Scanner(new File(filename))) {
             while (scanner.hasNextInt()) {
                 data.add(scanner.nextInt());

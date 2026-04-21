@@ -1,4 +1,4 @@
-package PAs.PA7;
+package PA7;
 
 import java.io.File;
 import java.io.FileNotFoundException;

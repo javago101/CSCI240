@@ -1,4 +1,4 @@
-package PAs.PA6;
+package PA6;
 
 import net.datastructures.Entry;
 import net.datastructures.HeapPriorityQueue;
@@ -59,7 +59,7 @@ public class PA6_EC1 {
         // 3. Extract and write to file format exactly as requested: 5 values per line
         try (PrintWriter writer = new PrintWriter(new File(outputPath))) {
             int count = 0;
-            
+
             while (!maxStringPQ.isEmpty()) {
                 Entry<String, Integer> entry = maxStringPQ.removeMin();
                 writer.print(entry.getKey());
@@ -74,7 +74,7 @@ public class PA6_EC1 {
             }
             System.out.println("\nSUCCESS: Output successfully written to -> " + outputPath);
             System.out.println("Please open this file and take your screenshot for submission!");
-            
+
         } catch (FileNotFoundException e) {
             System.err.println("Failed to write to output file: " + e.getMessage());
         }

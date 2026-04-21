@@ -1,3 +1,5 @@
+package dsaj.primer;
+
 import dsaj.primer.CreditCard;
 
 public class CreditCardApp {

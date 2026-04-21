@@ -1,4 +1,4 @@
-package PAs.PA6;
+package PA6;
 
 import net.datastructures.Entry;
 import net.datastructures.SortedPriorityQueue;
