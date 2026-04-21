@@ -1,4 +1,4 @@
-package PAs.PA7;
+package PA7;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -64,12 +64,16 @@ public class PA7_Ex1 {
     private static void timeInsertion(String filePath, int count) {
         int capacity = (int) Math.ceil(count / 0.75);
         HashMap<Integer, String> map = new HashMap<>(capacity);
-        int[] data = new int[count];
+
+        long startTime = System.currentTimeMillis();
 
         try (Scanner scanner = new Scanner(new File(filePath))) {
             int i = 0;
             while (scanner.hasNextInt() && i < count) {
-                data[i++] = scanner.nextInt();
+                int key = scanner.nextInt();
+                String value = new StringBuilder(String.valueOf(key)).reverse().toString();
+                map.put(key, value);
+                i++;
             }
         } catch (FileNotFoundException e) {
             System.out.println("Could not open file: " + filePath);
@@ -77,11 +81,6 @@ public class PA7_Ex1 {
             return;
         }
 
-        long startTime = System.currentTimeMillis();
-        for (int key : data) {
-            String value = new StringBuilder(String.valueOf(key)).reverse().toString();
-            map.put(key, value);
-        }
         long endTime = System.currentTimeMillis();
 
         System.out.println("Successfully inserted " + count + " elements into HashMap.");
