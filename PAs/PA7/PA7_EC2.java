@@ -2,122 +2,115 @@ package PA7;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Random;
 import java.util.Scanner;
 
-import net.datastructures.AbstractHashMap;
-import net.datastructures.Entry;
-import net.datastructures.UnsortedTableMap;
-
 public class PA7_EC2 {
+    // Modified by: Aiden Wang
 
-    // Custom map embedded directly to natively track Professor's exact definition of Probes
-    public static class InstrumentedChainHashMap<K, V> extends AbstractHashMap<K, V> {
-        private UnsortedTableMap<K, V>[] table;
+    /**
+     * A standalone, simplified Chain Hash Map implementation used to track "Probes" 
+     * across different load factors without internal library resizing.
+     */
+    private static class SimpleChainHashMap {
+        private LinkedList<Integer>[] table;
+        private int capacity;
+        private long totalProbes = 0;
+        private int maxProbes = 0;
 
-        public long totalProbes = 0;
-        public int maxProbes = 0;
+        // MAD compression parameters (Multiply-Add-Divide)
+        private static final int PRIME = 109345121;
+        private long scale, shift;
 
-        public InstrumentedChainHashMap(int cap) {
-            super(cap);
-        }
-
-        @Override
         @SuppressWarnings("unchecked")
-        protected void createTable() {
-            table = (UnsortedTableMap<K, V>[]) new UnsortedTableMap[capacity];
+        public SimpleChainHashMap(int cap) {
+            this.capacity = cap;
+            this.table = new LinkedList[cap]; // Array of buckets
+            
+            Random rand = new Random();
+            this.scale = rand.nextInt(PRIME - 1) + 1;
+            this.shift = rand.nextInt(PRIME);
         }
 
-        @Override
-        protected V bucketGet(int h, K k) {
-            UnsortedTableMap<K, V> bucket = table[h];
-            if (bucket == null) return null;
-            return bucket.get(k);
-        }
-
-        @Override
-        protected V bucketPut(int h, K k, V v) {
-            UnsortedTableMap<K, V> bucket = table[h];
-
-            // A null bucket implies it's empty, so size is essentially 0 initially
-            int priorSize = (bucket == null ? 0 : bucket.size());
-
-            // Professor rule: 1 probe to check initial location + 1 probe for every item evaluated inside the bucket chaining
-            int probesForInsertion = priorSize + 1;
-
-            totalProbes += probesForInsertion;
-            maxProbes = Math.max(maxProbes, probesForInsertion);
-
-            if (bucket == null) {
-                bucket = table[h] = new UnsortedTableMap<>();
+        /**
+         * Simulates a 'put' operation and tracks the number of probes required.
+         * A probe is defined as 1 (initial bucket access) + the number of existing 
+         * elements in that bucket's list.
+         */
+        public void put(int key) {
+            // Apply MAD compression: [(ay + b) % p] % N
+            int hash = (int) ((Math.abs(key * scale + shift) % PRIME) % capacity);
+            
+            if (table[hash] == null) {
+                table[hash] = new LinkedList<>();
             }
 
-            int oldSize = bucket.size();
-            V answer = bucket.put(k, v);
-            n += (bucket.size() - oldSize);
-            return answer;
+            // --- PROBE CALCULATION ---
+            // 1 probe to access the bucket location
+            // + 1 probe for every element currently in the list (search time)
+            int currentBucketProbes = 1 + table[hash].size();
+            
+            this.totalProbes += currentBucketProbes;
+            if (currentBucketProbes > this.maxProbes) {
+                this.maxProbes = currentBucketProbes;
+            }
+
+            // For the purpose of tracking performance, we add the key to the bucket
+            table[hash].add(key);
         }
 
-        @Override
-        protected V bucketRemove(int h, K k) {
-            UnsortedTableMap<K, V> bucket = table[h];
-            if (bucket == null) return null;
-            int oldSize = bucket.size();
-            V answer = bucket.remove(k);
-            n -= (oldSize - bucket.size());
-            return answer;
+        public double getAverageProbes(int n) {
+            return (double) totalProbes / n;
         }
 
-        @Override
-        public Iterable<Entry<K, V>> entrySet() {
-            ArrayList<Entry<K, V>> buffer = new ArrayList<>();
-            for (int h = 0; h < capacity; h++)
-                if (table[h] != null)
-                    for (Entry<K, V> entry : table[h].entrySet())
-                        buffer.add(entry);
-            return buffer;
+        public int getMaxProbes() {
+            return maxProbes;
         }
     }
 
     public static void main(String[] args) {
         System.out.println("Modified by: Aiden Wang\n");
-        System.out.println("=== PA7 Extra Credit Option 2: Chain Hashing Probing Tests ===");
+        System.out.println("=== PA7 Extra Credit Option 2: Chain Hashing Probing Analysis ===");
 
         String filePath = "PAs/PA7/Data/large100k.txt";
-        int count = 100000;
-        int[] data = new int[count];
+        int totalElements = 100000;
+        int[] data = new int[totalElements];
 
-        try (Scanner scanner = new Scanner(new File(filePath))) {
+        // 1. Read the input file into an array first
+        try (Scanner sc = new Scanner(new File(filePath))) {
             int i = 0;
-            while (scanner.hasNextInt() && i < count) {
-                data[i++] = scanner.nextInt();
+            while (sc.hasNextInt() && i < totalElements) {
+                data[i++] = sc.nextInt();
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Could not find file: " + filePath);
-            System.out.println("Ensure you run this from the project root.");
+            System.err.println("File not found! Please check: " + filePath);
             return;
         }
 
+        // 2. Test fixed Load Factors: 0.25, 0.5, 0.75, 0.9
         double[] loadFactors = {0.25, 0.5, 0.75, 0.9};
 
         for (double lf : loadFactors) {
-            int capacity = (int) Math.ceil(count / lf);
-            InstrumentedChainHashMap<Integer, String> map = new InstrumentedChainHashMap<>(capacity);
+            // Calculate capacity such that N / Capacity = Load Factor
+            int capacity = (int) Math.ceil(totalElements / lf);
+            
+            SimpleChainHashMap map = new SimpleChainHashMap(capacity);
 
-            // Populate Map
+            // Insert all data
             for (int key : data) {
-                String value = new StringBuilder(String.valueOf(key)).reverse().toString();
-                map.put(key, value);
+                map.put(key);
             }
 
-            // Calculation and formatted print
-            double averageProbes = (double) map.totalProbes / count;
-
-            System.out.println("\nLoad Factor: " + lf);
-            System.out.println("-------------------------");
-            System.out.println("Table Size (N/LF)   : " + capacity);
-            System.out.printf("Average Probes      : %.4f%n", averageProbes);
-            System.out.println("Maximum Worst Probes: " + map.maxProbes);
+            // Results output
+            System.out.println("\n--- Results for Load Factor: " + lf + " ---");
+            System.out.println("Total Items (N)     : " + totalElements);
+            System.out.println("Array Capacity (C)  : " + capacity);
+            System.out.printf("Average Probes      : %.4f%n", map.getAverageProbes(totalElements));
+            System.out.println("Max Probes in Bucket: " + map.getMaxProbes());
         }
+        
+        System.out.println("\nAnalysis: As the Load Factor approaches 1.0, the average number of probes ");
+        System.out.println("increases as buckets become more likely to contain multiple entries.");
     }
 }
