@@ -15,5 +15,10 @@ To maintain academic integrity and ensure that all generated code serves as a cl
 *   **Comment Every Step**: Use clear, natural language comments to explain the *purpose* of each logic block, especially if it relates to a specific PA requirement.
 *   **Big-O Awareness**: Prioritize code clarity that reflects the theoretical Big-O complexity over micro-optimizations that obscure the algorithm.
 
+## 4. Minimalist "Hand-Typed" Aesthetics
+*   **Flattened Logic**: Prioritize concise, direct logic over deep abstraction. If a loop in `main` suffices, avoid creating unnecessary helper methods.
+*   **Authentic Style**: Code should feel like it was "hand-typed" during an iterative learning process. Use simple `throws Exception` for quick scripts instead of complex `try-catch` blocks.
+*   **Sparse Comments**: Keep comments natural and focused on "why" rather than "what," mimicking a student's notes rather than a professional API documentation.
+
 ---
 *This document serves as a permanent architectural anchor. Any AI assistant entering this workspace must scan and obey these rules immediately.*
