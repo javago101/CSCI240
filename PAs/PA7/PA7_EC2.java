@@ -47,6 +47,7 @@ public class PA7_EC2 {
     }
 
     public static void main(String[] args) {
+        System.out.println("Modified by: Aiden Wang\n");
         String filePath = "PAs/PA7/Data/large100k.txt";
         int N = 100000;
         int[] data = new int[N];
