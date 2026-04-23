@@ -19,22 +19,16 @@ class SimplePopMap {
             int count = sc.nextInt();
             sc.nextLine(); // consume newline
 
-            long totalInsertOps = 0;
             for (int i = 0; i < count && sc.hasNextLine(); i++) {
                 String line = sc.nextLine();
                 int firstComma = line.indexOf(',');
                 if (firstComma != -1) {
                     int code = Integer.parseInt(line.substring(0, firstComma).trim());
                     String data = line.substring(firstComma + 1).trim();
-                    
-                    int before = database.nodesExamined;
                     database.put(code, data);
-                    totalInsertOps += (database.nodesExamined - before);
                 }
             }
-            double avg = (double) totalInsertOps / count;
             System.out.println("Tree built from " + filename + ". Initial Height: " + database.height(database.root()));
-            System.out.printf("EC: Average nodes examined during insertion: %.2f\n", avg);
         } catch (Exception e) {
             System.out.println("Error reading file: " + e.getMessage());
         }

@@ -18,22 +18,16 @@ class BetterPopMap {
             if (!sc.hasNextInt()) return;
             int count = sc.nextInt();
             sc.nextLine();
-            long totalExamined = 0;
             for (int i = 0; i < count && sc.hasNextLine(); i++) {
                 String line = sc.nextLine();
                 int firstComma = line.indexOf(',');
                 if (firstComma != -1) {
                     int code = Integer.parseInt(line.substring(0, firstComma).trim());
                     String data = line.substring(firstComma + 1).trim();
-                    
-                    int before = database.nodesExamined;
                     database.put(code, data);
-                    totalExamined += (database.nodesExamined - before);
                 }
             }
-            double avg = (double) totalExamined / count;
             System.out.println("AVL Tree built. Current Height: " + database.height(database.root()));
-            System.out.printf("EC: Average nodes examined during AVL insertion: %.2f\n", avg);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
