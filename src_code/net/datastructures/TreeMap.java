@@ -188,18 +188,21 @@ public class TreeMap<K,V> extends AbstractSortedMap<K,V> {
 
 
   // Some notational shorthands for brevity (yet not efficiency)
-  protected Position<Entry<K,V>> root() { return tree.root(); }
-  protected Position<Entry<K,V>> parent(Position<Entry<K,V>> p) { return tree.parent(p); }
-  protected Position<Entry<K,V>> left(Position<Entry<K,V>> p) { return tree.left(p); }
-  protected Position<Entry<K,V>> right(Position<Entry<K,V>> p) { return tree.right(p); }
-  protected Position<Entry<K,V>> sibling(Position<Entry<K,V>> p) { return tree.sibling(p); }
-  protected boolean isRoot(Position<Entry<K,V>> p) { return tree.isRoot(p); }
-  protected boolean isExternal(Position<Entry<K,V>> p) { return tree.isExternal(p); }
-  protected boolean isInternal(Position<Entry<K,V>> p) { return tree.isInternal(p); }
+  public Position<Entry<K,V>> root() { return tree.root(); }
+  public Position<Entry<K,V>> parent(Position<Entry<K,V>> p) { return tree.parent(p); }
+  public Position<Entry<K,V>> left(Position<Entry<K,V>> p) { return tree.left(p); }
+  public Position<Entry<K,V>> right(Position<Entry<K,V>> p) { return tree.right(p); }
+  public Position<Entry<K,V>> sibling(Position<Entry<K,V>> p) { return tree.sibling(p); }
+  public boolean isRoot(Position<Entry<K,V>> p) { return tree.isRoot(p); }
+  public boolean isExternal(Position<Entry<K,V>> p) { return tree.isExternal(p); }
+  public boolean isInternal(Position<Entry<K,V>> p) { return tree.isInternal(p); }
+  public int height(Position<Entry<K,V>> p) { return tree.height(p); }
   protected void set(Position<Entry<K,V>> p, Entry<K,V> e) { tree.set(p, e); }
   protected Entry<K,V> remove(Position<Entry<K,V>> p) { return tree.remove(p); }
   protected void rotate(Position<Entry<K,V>> p) { tree.rotate(p); }
   protected Position<Entry<K,V>> restructure(Position<Entry<K,V>> x) { return tree.restructure(x); }
+
+  public int nodesExamined = 0; // For Extra Credit tracking
 
   /**
    * Returns the position in p's subtree having the given key (or else the terminal leaf).
@@ -208,6 +211,7 @@ public class TreeMap<K,V> extends AbstractSortedMap<K,V> {
    * @return Position holding key, or last node reached during search
    */
   private Position<Entry<K,V>> treeSearch(Position<Entry<K,V>> p, K key) {
+    nodesExamined++; 
     if (isExternal(p))
       return p;                          // key not found; return the final leaf
     int comp = compare(key, p.getElement());

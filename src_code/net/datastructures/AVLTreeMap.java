@@ -44,7 +44,8 @@ public class AVLTreeMap<K,V> extends TreeMap<K,V> {
   public AVLTreeMap(Comparator<K> comp) { super(comp); }
 
   /** Returns the height of the given tree position. */
-  protected int height(Position<Entry<K,V>> p) {
+  @Override
+  public int height(Position<Entry<K,V>> p) {
     return tree.getAux(p);
   }
 
