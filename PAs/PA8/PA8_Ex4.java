@@ -58,6 +58,26 @@ class BetterPopMap {
         System.out.println(p.getElement().getKey() + ": " + p.getElement().getValue() + " \t[Height: " + database.height(p) + "]");
         inOrder(database.right(p));
     }
+
+    // EC2: Draw the tree structure (Key only)
+    public void drawTree() {
+        System.out.println("\n--- AVL Tree Structure Drawing (EC2) ---");
+        drawRecurse(database.root(), 0);
+    }
+
+    private void drawRecurse(Position<Entry<Integer, String>> p, int depth) {
+        // Simple indentation based on depth
+        for (int i = 0; i < depth; i++) System.out.print("  ");
+
+        if (database.isExternal(p)) {
+            System.out.println("[leaf]");
+            return;
+        }
+
+        System.out.println(p.getElement().getKey());
+        drawRecurse(database.left(p), depth + 1);
+        drawRecurse(database.right(p), depth + 1);
+    }
 }
 
 public class PA8_Ex4 {
@@ -82,5 +102,8 @@ public class PA8_Ex4 {
 
         System.out.println("\n9. Final Records after inserts/deletes:");
         betterMap.print();
+
+        // Calling EC2
+        betterMap.drawTree();
     }
 }
