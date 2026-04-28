@@ -11,7 +11,6 @@ import net.datastructures.Position;
 public class PA8_Ex3 {
 
     public static void main(String[] args) {
-        System.out.println("Author: Aiden Wang");
         System.out.println("Modified by: Aiden Wang\n");
 
         AVLTreeMap<Integer, String> avl = new AVLTreeMap<>();

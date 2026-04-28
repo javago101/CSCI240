@@ -11,7 +11,6 @@ import net.datastructures.Position;
 public class PA8_Ex1 {
 
     public static void main(String[] args) {
-        System.out.println("Author: Aiden Wang");
         System.out.println("Modified by: Aiden Wang\n");
 
         TreeMap<Integer, String> bst = new TreeMap<>();

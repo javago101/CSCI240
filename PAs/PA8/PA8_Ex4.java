@@ -39,11 +39,21 @@ class BetterPopMap {
     }
 
     public void insert(int code, String popCounty) {
+        if (database.get(code) != null) {
+            System.out.println("Replacing County " + code);
+        } else {
+            System.out.println("Inserting NEW County " + code);
+        }
         database.put(code, popCounty);
     }
 
     public void erase(int code) {
-        database.remove(code);
+        String removed = database.remove(code);
+        if (removed != null) {
+            System.out.println("Deleted County " + code);
+        } else {
+            System.out.println("County " + code + " not found for deletion.");
+        }
     }
 
     public void print() {
@@ -58,31 +68,10 @@ class BetterPopMap {
         System.out.println(p.getElement().getKey() + ": " + p.getElement().getValue() + " \t[Height: " + database.height(p) + "]");
         inOrder(database.right(p));
     }
-
-    // EC2: Draw the tree structure (Key only)
-    public void drawTree() {
-        System.out.println("\n--- AVL Tree Structure Drawing (EC2) ---");
-        drawRecurse(database.root(), 0);
-    }
-
-    private void drawRecurse(Position<Entry<Integer, String>> p, int depth) {
-        // Simple indentation based on depth
-        for (int i = 0; i < depth; i++) System.out.print("  ");
-
-        if (database.isExternal(p)) {
-            System.out.println("[leaf]");
-            return;
-        }
-
-        System.out.println(p.getElement().getKey());
-        drawRecurse(database.left(p), depth + 1);
-        drawRecurse(database.right(p), depth + 1);
-    }
 }
 
 public class PA8_Ex4 {
     public static void main(String[] args) {
-        System.out.println("Author: Aiden Wang");
         System.out.println("Modified by: Aiden Wang\n");
 
         BetterPopMap betterMap = new BetterPopMap("PAs/PA8/Data/popSmall.txt");
@@ -102,8 +91,5 @@ public class PA8_Ex4 {
 
         System.out.println("\n9. Final Records after inserts/deletes:");
         betterMap.print();
-
-        // Calling EC2
-        betterMap.drawTree();
     }
 }

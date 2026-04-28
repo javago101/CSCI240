@@ -77,7 +77,6 @@ class SimplePopMap {
 
 public class PA8_Ex2 {
     public static void main(String[] args) {
-        System.out.println("Author: Aiden Wang");
         System.out.println("Modified by: Aiden Wang\n");
 
         SimplePopMap popMap = new SimplePopMap("PAs/PA8/Data/popSmall.txt");

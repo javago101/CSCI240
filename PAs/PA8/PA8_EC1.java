@@ -13,14 +13,19 @@ import java.util.Scanner;
 public class PA8_EC1 {
 
     public static void main(String[] args) {
-        System.out.println("Author: Aiden Wang");
         System.out.println("PA8 Extra Credit - Search Tree Performance Analysis\n");
 
-        String filename = "PAs/PA8/Data/popSmall.txt";
-        
-        runBSTAnalysis(filename);
-        System.out.println();
-        runAVLAnalysis(filename);
+        String[] filenames = {"PAs/PA8/Data/popSmall.txt", "PAs/PA8/Data/popLarge.txt"};
+
+        for (String filename : filenames) {
+            System.out.println("==================================================");
+            System.out.println("Analyzing File: " + filename);
+            System.out.println("==================================================");
+            runBSTAnalysis(filename);
+            System.out.println();
+            runAVLAnalysis(filename);
+            System.out.println();
+        }
     }
 
     private static void runBSTAnalysis(String filename) {
