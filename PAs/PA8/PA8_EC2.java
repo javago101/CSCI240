@@ -34,12 +34,12 @@ public class PA8_EC2 {
                     }
                 }
             }
-            System.out.println("AVL Tree built. Current Height: " + database.height(database.root()));
+            System.out.println("AVL Tree built. Height: " + database.height(database.root()));
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
 
-        System.out.println("\n--- AVL Tree Structure Drawing ---");
+        System.out.println("\nAVL Tree Structure:");
         drawRecurse(database, database.root(), 0);
     }
 

@@ -28,7 +28,7 @@ class SimplePopMap {
                     database.put(code, data);
                 }
             }
-            System.out.println("Tree built from " + filename + ". Initial Height: " + database.height(database.root()));
+            System.out.println("Tree built from " + filename + ". Height: " + database.height(database.root()));
         } catch (Exception e) {
             System.out.println("Error reading file: " + e.getMessage());
         }
@@ -62,9 +62,9 @@ class SimplePopMap {
     }
 
     public void print() {
-        System.out.println("\n--- Current Records (In-order) ---");
+        System.out.println("\nCurrent records (In-order):");
         inOrderPrint(database.root());
-        System.out.println("Tree Total Height: " + database.height(database.root()));
+        System.out.println("Tree height: " + database.height(database.root()));
     }
 
     private void inOrderPrint(Position<Entry<Integer, String>> p) {
@@ -82,8 +82,8 @@ public class PA8_Ex2 {
         SimplePopMap popMap = new SimplePopMap("PAs/PA8/Data/popSmall.txt");
 
         // Test Cases from instructions
-        System.out.println("\n--- Running Test Cases ---");
-        System.out.println("1. Listing all records:");
+        System.out.println("\nRunning tests:");
+        System.out.println("1. Initial records:");
         popMap.print();
 
         System.out.print("\n2. "); popMap.find(6037);
@@ -96,7 +96,7 @@ public class PA8_Ex2 {
         System.out.print("7. "); popMap.erase(6075);
         System.out.print("8. "); popMap.erase(6055);
 
-        System.out.println("\n9. Listing records after modifications:");
+        System.out.println("\n9. Records after modifications:");
         popMap.print();
     }
 }

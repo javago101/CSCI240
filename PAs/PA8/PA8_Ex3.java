@@ -17,19 +17,19 @@ public class PA8_Ex3 {
 
         // 1. Insert 10, 20, 4, 8, 15
         int[] keysToInsert = {10, 20, 4, 8, 15};
-        System.out.println("--- Inserting Keys into AVL ---");
+        System.out.println("Inserting keys:");
         for (int k : keysToInsert) {
-            System.out.println("Inserting Key: " + k);
+            System.out.println("Inserted: " + k);
             avl.put(k, "Name-" + k);
         }
 
         // 2. Erase 8, 10
-        System.out.println("\n--- Erasing Keys ---");
+        System.out.println("\nErasing keys:");
         System.out.println("Erasing 8: " + avl.remove(8));
         System.out.println("Erasing 10: " + avl.remove(10));
 
         // 3. Search for 15, 30, 8
-        System.out.println("\n--- Searching for Keys ---");
+        System.out.println("\nSearching for keys:");
         int[] keysToSearch = {15, 30, 8};
         for (int k : keysToSearch) {
             String val = avl.get(k);
@@ -37,7 +37,7 @@ public class PA8_Ex3 {
         }
 
         // 4. Print the final AVL Tree with Heights
-        System.out.println("\n--- Final AVL Structure (In-order, showing heights) ---");
+        System.out.println("\nFinal AVL Structure:");
         printAVLInOrder(avl, avl.root());
     }
 

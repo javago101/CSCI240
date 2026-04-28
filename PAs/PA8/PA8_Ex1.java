@@ -17,19 +17,19 @@ public class PA8_Ex1 {
 
         // 1. Insert 10, 20, 4, 8, 15
         int[] keysToInsert = {10, 20, 4, 8, 15};
-        System.out.println("--- Inserting Keys ---");
+        System.out.println("Inserting keys:");
         for (int k : keysToInsert) {
-            System.out.println("Inserting Key: " + k);
+            System.out.println("Inserted: " + k);
             bst.put(k, "Value-" + k);
         }
 
         // 2. Erase 8, 10
-        System.out.println("\n--- Erasing Keys ---");
+        System.out.println("\nErasing keys:");
         System.out.println("Erasing 8: " + bst.remove(8));
         System.out.println("Erasing 10: " + bst.remove(10));
 
         // 3. Search for 15, 30, 8
-        System.out.println("\n--- Searching for Keys ---");
+        System.out.println("\nSearching for keys:");
         int[] keysToSearch = {15, 30, 8};
         for (int k : keysToSearch) {
             String val = bst.get(k);
@@ -41,7 +41,7 @@ public class PA8_Ex1 {
         }
 
         // 4. Print the final BST (In-order)
-        System.out.println("\n--- Final BST Structure (In-order) ---");
+        System.out.println("\nFinal BST Structure:");
         printTreeInOrder(bst, bst.root());
     }
 
@@ -52,7 +52,7 @@ public class PA8_Ex1 {
         if (map.isExternal(p)) return;
 
         printTreeInOrder(map, map.left(p));
-        System.out.println("Key: " + p.getElement().getKey() + "\tValue: " + p.getElement().getValue());
+        System.out.println(p.getElement().getKey() + ": " + p.getElement().getValue());
         printTreeInOrder(map, map.right(p));
     }
 }

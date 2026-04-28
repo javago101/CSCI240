@@ -18,9 +18,7 @@ public class PA8_EC1 {
         String[] filenames = {"PAs/PA8/Data/popSmall.txt", "PAs/PA8/Data/popLarge.txt"};
 
         for (String filename : filenames) {
-            System.out.println("==================================================");
-            System.out.println("Analyzing File: " + filename);
-            System.out.println("==================================================");
+            System.out.println("--- Analyzing File: " + filename + " ---");
             runBSTAnalysis(filename);
             System.out.println();
             runAVLAnalysis(filename);
@@ -51,7 +49,7 @@ public class PA8_EC1 {
                 }
             }
             double avg = (double) totalExamined / count;
-            System.out.println(">> BST Performance (TreeMap)");
+            System.out.println("BST Performance:");
             System.out.println("Nodes inserted: " + count);
             System.out.println("Total node examinations: " + totalExamined);
             System.out.printf("Average nodes examined per insertion: %.2f\n", avg);
@@ -83,7 +81,7 @@ public class PA8_EC1 {
                 }
             }
             double avg = (double) totalExamined / count;
-            System.out.println(">> AVL Performance (AVLTreeMap)");
+            System.out.println("AVL Performance:");
             System.out.println("Nodes inserted: " + count);
             System.out.println("Total node examinations: " + totalExamined);
             System.out.printf("Average nodes examined per insertion: %.2f\n", avg);

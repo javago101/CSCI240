@@ -27,7 +27,7 @@ class BetterPopMap {
                     database.put(code, data);
                 }
             }
-            System.out.println("AVL Tree built. Current Height: " + database.height(database.root()));
+            System.out.println("AVL Tree built. Height: " + database.height(database.root()));
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -57,9 +57,9 @@ class BetterPopMap {
     }
 
     public void print() {
-        System.out.println("\n--- Population Database (AVL In-order) ---");
+        System.out.println("\nPopulation Database (AVL In-order):");
         inOrder(database.root());
-        System.out.println("Total Tree Height: " + database.height(database.root()));
+        System.out.println("Tree height: " + database.height(database.root()));
     }
 
     private void inOrder(Position<Entry<Integer, String>> p) {
@@ -76,7 +76,7 @@ public class PA8_Ex4 {
 
         BetterPopMap betterMap = new BetterPopMap("PAs/PA8/Data/popSmall.txt");
 
-        System.out.println("\n1. Initial Records:");
+        System.out.println("\nInitial records:");
         betterMap.print();
 
         System.out.print("\n2. "); betterMap.find(6037);
@@ -89,7 +89,7 @@ public class PA8_Ex4 {
         betterMap.erase(6075);
         betterMap.erase(6055);
 
-        System.out.println("\n9. Final Records after inserts/deletes:");
+        System.out.println("\nRecords after modifications:");
         betterMap.print();
     }
 }
