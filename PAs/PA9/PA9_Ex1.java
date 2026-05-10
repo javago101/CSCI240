@@ -44,20 +44,20 @@ public class PA9_Ex1 {
         }
 
         System.out.println("=== small1k.txt Random ===");
-        long invStart = System.currentTimeMillis();
+        long invStart = System.nanoTime();
         int inv1k = countInversions(data, 1000);
-        long invEnd = System.currentTimeMillis();
+        long invEnd = System.nanoTime();
         
-        long sortStart = System.currentTimeMillis();
+        long sortStart = System.nanoTime();
         insertionSort(data, 1000);
-        long sortEnd = System.currentTimeMillis();
+        long sortEnd = System.nanoTime();
 
         System.out.print("First 5: ");
         for(int i=0; i<5; i++) System.out.print(data[i] + " ");
         System.out.println();
-        System.out.println("Inversions: " + inv1k + " (Time: " + (invEnd-invStart) + "ms)");
+        System.out.println("Inversions: " + inv1k + " (Time: " + (invEnd-invStart)/1000000.0 + " ms)");
         System.out.println("Comparisons: " + comparisons);
-        System.out.println("Sorting Time: " + (sortEnd-sortStart) + "ms");
+        System.out.println("Sorting Time: " + (sortEnd-sortStart)/1000000.0 + " ms");
     }
 
     public static void insertionSort(int[] array, int size) {

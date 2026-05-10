@@ -42,9 +42,9 @@ public class PA9_Ex2 {
         sc.close();
 
         reset();
-        long start = System.currentTimeMillis();
+        long start = System.nanoTime();
         mergeSort(data, 0, size - 1);
-        long end = System.currentTimeMillis();
+        long end = System.nanoTime();
 
         System.out.print("First 5 values: ");
         for(int i=0; i<5; i++) System.out.print(data[i] + " ");
@@ -55,7 +55,7 @@ public class PA9_Ex2 {
         
         System.out.println("Number of comparisons: " + comparisons);
         System.out.println("Number of data moves: " + dataMoves);
-        System.out.println("Running time: " + (end - start) + " ms");
+        System.out.println("Running time: " + (end - start) / 1000000.0 + " ms");
     }
 
     public static void mergeSort(int[] a, int left, int right) {
