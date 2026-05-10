@@ -16,21 +16,15 @@ public class PA9_Ex1 {
     public static void main(String[] args) throws Exception {
         System.out.println("Author: Aiden Wang\n");
 
-        // 1. Small List Test
-        int[] small = {4, 3, 1, 0, 9, 8, 6, 7, 5, 2};
-        System.out.println("=== Original Small List ===");
-        System.out.print("Original: ");
-        printArray(small);
-        
-        int inv = countInversions(small, small.length);
-        insertionSort(small, small.length);
-        
-        System.out.print("Sorted:   ");
-        printArray(small);
-        System.out.println("Inversions: " + inv);
-        System.out.println("Comparisons: " + comparisons);
-        System.out.println("Data Moves: " + dataMoves);
-        System.out.println();
+        // 1. Small List Tests
+        int[] original = {4, 3, 1, 0, 9, 8, 6, 7, 5, 2};
+        runSmallTest("Original Small List", original);
+
+        int[] sorted = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        runSmallTest("Sorted Small List", sorted);
+
+        int[] descending = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+        runSmallTest("Descending Small List", descending);
 
         // 2. small1k.txt Test
         int[] data = new int[1000];
@@ -52,11 +46,16 @@ public class PA9_Ex1 {
         insertionSort(data, 1000);
         long sortEnd = System.nanoTime();
 
-        System.out.print("First 5: ");
+        System.out.print("First 5 values: ");
         for(int i=0; i<5; i++) System.out.print(data[i] + " ");
         System.out.println();
+        System.out.print("Last 5 values:  ");
+        for(int i=995; i<1000; i++) System.out.print(data[i] + " ");
+        System.out.println();
+        
         System.out.println("Inversions: " + inv1k + " (Time: " + (invEnd-invStart)/1000000.0 + " ms)");
-        System.out.println("Comparisons: " + comparisons);
+        System.out.println("Number of comparisons: " + comparisons);
+        System.out.println("Number of data moves: " + dataMoves);
         System.out.println("Sorting Time: " + (sortEnd-sortStart)/1000000.0 + " ms");
     }
 
@@ -88,6 +87,22 @@ public class PA9_Ex1 {
             }
         }
         return count;
+    }
+
+    static void runSmallTest(String label, int[] arr) {
+        System.out.println("=== " + label + " ===");
+        System.out.print("Original: ");
+        printArray(arr);
+        
+        int inv = countInversions(arr, arr.length);
+        insertionSort(arr, arr.length);
+        
+        System.out.print("Sorted:   ");
+        printArray(arr);
+        System.out.println("Inversions: " + inv);
+        System.out.println("Comparisons: " + comparisons);
+        System.out.println("Data Moves: " + dataMoves);
+        System.out.println();
     }
 
     static void printArray(int[] arr) {
