@@ -18,23 +18,44 @@ public class PA9_Ex2 {
         // 1. Small List
         int[] small = {4, 3, 1, 0, 9, 8, 6, 7, 5, 2};
         System.out.println("=== Small List ===");
+        System.out.print("Original List: ");
+        printArray(small);
+        
         reset();
         mergeSort(small, 0, small.length - 1);
+        
+        System.out.print("Sorted List:   ");
         printArray(small);
-        System.out.println("Comparisons: " + comparisons + ", Moves: " + dataMoves);
+        System.out.println("Number of comparisons: " + comparisons);
+        System.out.println("Number of data moves: " + dataMoves);
 
-        // 2. large100k.txt
-        int[] large = new int[100000];
-        Scanner sc = new Scanner(new File("PAs/PA9/Data/large100k.txt"));
-        for (int i = 0; i < 100000; i++) large[i] = sc.nextInt();
+        // 2. Data Files
+        runFileTest("small1k.txt", 1000);
+        runFileTest("large100k.txt", 100000);
+    }
+
+    static void runFileTest(String fileName, int size) throws Exception {
+        System.out.println("\n=== " + fileName + " ===");
+        int[] data = new int[size];
+        Scanner sc = new Scanner(new File("PAs/PA9/Data/" + fileName));
+        for (int i = 0; i < size; i++) data[i] = sc.nextInt();
         sc.close();
 
-        System.out.println("\n=== large100k.txt ===");
         reset();
         long start = System.currentTimeMillis();
-        mergeSort(large, 0, large.length - 1);
+        mergeSort(data, 0, size - 1);
         long end = System.currentTimeMillis();
-        System.out.println("Time: " + (end - start) + "ms, Comparisons: " + comparisons);
+
+        System.out.print("First 5 values: ");
+        for(int i=0; i<5; i++) System.out.print(data[i] + " ");
+        System.out.println();
+        System.out.print("Last 5 values:  ");
+        for(int i=size-5; i<size; i++) System.out.print(data[i] + " ");
+        System.out.println();
+        
+        System.out.println("Number of comparisons: " + comparisons);
+        System.out.println("Number of data moves: " + dataMoves);
+        System.out.println("Running time: " + (end - start) + " ms");
     }
 
     public static void mergeSort(int[] a, int left, int right) {
