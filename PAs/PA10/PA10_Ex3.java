@@ -15,9 +15,15 @@ public class PA10_Ex3 {
     public static void main(String[] args) {
         System.out.println("Modified by: Aiden Wang\n");
 
-        String text = "more_money_needed";
-
-        System.out.println("Enter text: " + text + "<E>");
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter text: ");
+        String text = "more_money_needed"; // fallback
+        if (scanner.hasNextLine()) {
+            String input = scanner.nextLine();
+            if (!input.trim().isEmpty()) {
+                text = input;
+            }
+        }
 
         System.out.println("\nText: \"" + text + "\"");
         System.out.println("Number of characters: " + text.length() + "\n");
