@@ -1,0 +1,145 @@
+Spring 26 CSCI 240 -- PA 10: Selection and String Processing
+Author: Aiden Wang
+Contribution: Implemented algorithms for Randomized Quick Select, Pattern Matching (BF, BM, KMP), Huffman Tree (with Extra Credit 2), and Longest Common Subsequence.
+
+================================================================================
+EXERCISE 1: RANDOMIZED QUICK SELECT
+================================================================================
+
+1. Small List (11 values: 4 3 1 0 9 8 6 7 10 5 2)
+k = 1 (smallest): kth smallest element: 0, comparisons: 29, recursive calls: 5
+k = 5 (median):   kth smallest element: 4, comparisons: 23, recursive calls: 3
+k = 11 (largest): kth smallest element: 10, comparisons: 17, recursive calls: 3
+
+2. Large Data Files
+small1k.txt (k = 500, median):
+kth smallest element: 5040
+Comparisons: 2361
+Recursive calls: 14
+Time: ~0.15 ms
+
+large100k.txt (k = 50000, median):
+kth smallest element: 50016
+Comparisons: 247596
+Recursive calls: 17
+Time: ~2.3 ms
+
+(Note: Exact comparisons/recursive calls will vary slightly due to the randomized nature of pivot selection, but they are consistently within expected boundaries.)
+
+================================================================================
+EXERCISE 2: PATTERN MATCHING (BF, BM, KMP)
+================================================================================
+
+Test Case 1
+T: "aaaaaaaaaaaaaaaaabbbbbbbbbbbbbb"
+  P: "aaaab"
+    BF  -> Found at: 13, Comparisons: 85
+    BM  -> Found at: 13, Comparisons: 21
+    KMP -> Found at: 13, Comparisons: 31
+  P: "aabaa"
+    BF  -> Found at: -1, Comparisons: 61
+    BM  -> Found at: -1, Comparisons: 46
+    KMP -> Found at: -1, Comparisons: 47
+
+Test Case 2
+T: "a pattern matching algorithm"
+  P: "rithm"
+    BF  -> Found at: 23, Comparisons: 29
+    BM  -> Found at: 23, Comparisons: 11
+    KMP -> Found at: 23, Comparisons: 29
+  P: "rithn"
+    BF  -> Found at: -1, Comparisons: 29
+    BM  -> Found at: -1, Comparisons: 8
+    KMP -> Found at: -1, Comparisons: 30
+
+Test Case 3
+T: "GTTTATGTAGCTTACCTCCTCAAAGCAATACACTGAAAA"
+  P: "CTGA"
+    BF  -> Found at: 32, Comparisons: 47
+    BM  -> Found at: 32, Comparisons: 21
+    KMP -> Found at: 32, Comparisons: 44
+  P: "CTGG"
+    BF  -> Found at: -1, Comparisons: 50
+    BM  -> Found at: -1, Comparisons: 13
+    KMP -> Found at: -1, Comparisons: 48
+
+================================================================================
+EXERCISE 3 & EXTRA CREDIT OPTION 2: HUFFMAN TREE
+================================================================================
+
+Text: "more_money_needed"
+Number of characters: 17
+
+Huffman coding tree:
+17 *
+    8 *
+        4 *
+            2 o
+            2 *
+                1 r
+                1 y
+        4 *
+            2 n
+            2 _
+    9 *
+        4 *
+            2 m
+            2 d
+        5 e
+
+Char Frequency Encoded bits
+_   2  011
+d   2  101
+e   5  11
+m   2  100
+n   2  010
+o   2  000
+r   1  0010
+y   1  0011
+
+Number of bits to encode message: 48
+100000001011011100000010110011011010111110111101
+
+================================================================================
+EXERCISE 4: LONGEST COMMON SUBSEQUENCE (LCS)
+================================================================================
+
+Test Case 1: X = "GTTCCTAATA", Y = "CGATAATTGAGA"
+Resulting Table:
+        C  G  A  T  A  A  T  T  G  A  G  A
+     0  0  0  0  0  0  0  0  0  0  0  0  0
+ G   0  0  1  1  1  1  1  1  1  1  1  1  1
+ T   0  0  1  1  2  2  2  2  2  2  2  2  2
+ T   0  0  1  1  2  2  2  3  3  3  3  3  3
+ C   0  1  1  1  2  2  2  3  3  3  3  3  3
+ C   0  1  1  1  2  2  2  3  3  3  3  3  3
+ T   0  1  1  1  2  2  2  3  4  4  4  4  4
+ A   0  1  1  2  2  3  3  3  4  4  5  5  5
+ A   0  1  1  2  2  3  4  4  4  4  5  5  6
+ T   0  1  1  2  3  3  4  5  5  5  5  5  6
+ A   0  1  1  2  3  4  4  5  5  5  6  6  6
+
+Longest Common Subsequence: GTTTAA
+
+Test Case 2: X = "ACTIVE", Y = "RELATIVELY"
+Resulting Table:
+        R  E  L  A  T  I  V  E  L  Y
+     0  0  0  0  0  0  0  0  0  0  0
+ A   0  0  0  0  1  1  1  1  1  1  1
+ C   0  0  0  0  1  1  1  1  1  1  1
+ T   0  0  0  0  1  2  2  2  2  2  2
+ I   0  0  0  0  1  2  3  3  3  3  3
+ V   0  0  0  0  1  2  3  4  4  4  4
+ E   0  0  1  1  1  2  3  4  5  5  5
+
+Longest Common Subsequence: ATIVE
+
+================================================================================
+QUESTIONS
+================================================================================
+
+Question 1: The Huffman code is an example of prefix code. Explain the meaning of prefix code.
+Answer: A prefix code (or prefix-free code) is a coding system where no code word is a prefix of any other code word. This crucial property allows the encoded message to be unambiguously decoded without needing special separator markers between characters.
+
+Question 2: Explain the main difference between standard tries and compressed tries. How much space is saved by moving from the standard tries to the compressed tries?
+Answer: The main difference is that a compressed trie merges any internal node that has only one child with that child, converting long chains of single-child nodes into a single node storing a substring. This reduces the total number of nodes from O(N), where N is the total length of all strings, to O(s), where s is the total number of strings stored. Space is significantly saved because the compressed trie guarantees at most 2s - 1 nodes in total, reducing space complexity to be proportional only to the number of strings rather than the sum of their lengths.

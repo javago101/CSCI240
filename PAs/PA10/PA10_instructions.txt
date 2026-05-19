@@ -1,0 +1,120 @@
+Spring 26 CSCI 240 -- PA 10 
+Selection and String Processing
+ 
+Feel free to discuss and help each other out but does not imply that you can give away 
+your code or your answers!  Make sure to read all instructions before attempting this lab.   
+ 
+You can work with a lab partner and each one must submit the same PDF file (include 
+both names in the submission file).  Each person must include a brief statement about 
+your contribution to this assignment. 
+You must use an appropriate provided template from Canvas and output 
+"Author:  Your Name(s)" for all your programs.  If you are modifying an existing 
+program, use "Modified by:  Your Name(s)". 
+Exercise 1 – Implement the randomized quick select algorithm as discussed in 
+lecture/book as a C++ function or Java method to find kth smallest element.  Output kth 
+smallest element, number of compares, and number of recursive calls.  Test it with the 
+following list of values, 4 3 1 0 9 8 6 7 10 5 2, with n = 11 and try k = 1 (smallest), k = 
+n/2 (median), and k = n (largest).   In addition, find the medians (k = n/2) for the two data 
+files from previous PA, small1k.txt and large100k.txt.  Confirm that the results, number 
+of compares, and number of recursive calls are reasonable. 
+Exercise 2 – Try Brute Force pattern matching (code is given in textbook), BM pattern 
+matching (code is given in textbook), and KMP pattern matching (code is given in 
+textbook) on various T and P and then modify the code to count the number of 
+comparisons.  Output the number of comparisons and whether the pattern is found (index 
+where it is found) or not found (-1).  Use a driver to check them out.  Make sure to 
+understand the algorithms and confirm that the results are reasonable. 
+Try the following test cases: 
+1. T: “aaaaaaaaaaaaaaaaabbbbbbbbbbbbbb”, P: “aaaab”, P: “aabaa” (2 cases) 
+2. T: “a pattern matching algorithm”, P: “rithm”, P: “rithn” (2 cases) 
+3. T: “GTTTATGTAGCTTACCTCCTCAAAGCAATACACTGAAAA”, P: 
+“CTGA”, and P: “CTGG” (2 cases) 
+Exercise 3 – Write a program that construct a Huffman tree from a given text and output 
+the encoded tree.   Use the algorithm in the textbook and you need to utilize a class 
+named HuffmanTree with an appropriate interface.  You must use the linked binary tree 
+and the heap PQ data structures from the textbook (in previous PAs) or points will not be 
+given for this exercise. 
+Input text: more_money_needed 
+Notes: nodes with * are internal nodes and your tree might not match this tree exactly 
+since there are multiple optimal Huffman coding trees. 
+ 
+// each node holds the count and the character 
+ 
+Enter text: more_money_needed<E> 
+ 
+Text: “more_money_needed” 
+Number of characters: 17 
+ 
+Huffman coding tree: 
+17 * 
+    8 * 
+        4 * 
+            2 n 
+         2 o 
+        4 * 
+            2 _ 
+            2 * 
+              1 r 
+              1 y 
+    9 * 
+        4 * 
+         2 m 
+         2 d 
+        5 * 
+         5 e 
+ 
+ 
+ 
+ 
+Exercise 4 – Try the LCS algorithm (code is given in textbook) and modify it to print out 
+the resulting table as well as the longest common subsequence.  Try X = 
+“GTTCCTAATA” and Y = “CGATAATTGAGA”.  Try another test case with X= 
+“ACTIVE” and Y = “RELATIVELY”.  Make sure to understand the algorithm and 
+confirm that the results are reasonable. 
+ 
+Question 1:  The Huffman code is an example of prefix code.  Explain the meaning of 
+prefix code. 
+Question 2:  Explain the main difference between standard tries and compressed tries.  
+How much space is saved by moving from the standard tries to the compressed tries? 
+ 
+You can earn EC for only one of the options below: 
+Extra Credit Option 1:  Modify exercise 2 to accept text (T) from an input data file and 
+pattern (P) from the keyboard.  Try the test cases below.  Do results seem reasonable?  
+Explain.  Two (2) EC points will be awarded for this option. 
+1. T: Formatted US declaration file from a previous PA, P: “the computer”, P: 
+“the world” 
+2. T: humanDNA.txt file on Canvas, P: “CAAATGGCC”, and P: “CAAATGGGCC” 
+Extra Credit Option 2:  Modify exercise 3 to output the number of bits and actual 
+encoded bits for the text.  Four (4) EC points will be awarded for this option. 
+ 
+Huffman coding tree: 
+17 * 
+    8 * 
+        4 * 
+            2 n 
+         2 o 
+        4 * 
+            2 _ 
+            2 * 
+              1 r 
+              1 y 
+    9 * 
+        4 * 
+         2 m 
+         2 d 
+        5 * 
+         5 e 
+ 
+ 
+Char Frequency Encoded bits 
+_   2  011 
+d   2  101 
+e   5  11 
+m   2  100 
+n   2  010 
+o   2  000 
+r   1  0010 
+y   1  0011 
+ 
+Number of bits to encode message: 48 
+100000001011011100000010110011011010111110111101 
+Fill out and turn in the PA submission file for this assignment (save as PDF format) 
