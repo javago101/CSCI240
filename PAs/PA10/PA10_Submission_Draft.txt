@@ -64,7 +64,7 @@ T: "GTTTATGTAGCTTACCTCCTCAAAGCAATACACTGAAAA"
     KMP -> Found at: -1, Comparisons: 48
 
 ================================================================================
-EXERCISE 3 & EXTRA CREDIT OPTION 2: HUFFMAN TREE
+EXERCISE 3: HUFFMAN TREE
 ================================================================================
 
 Text: "more_money_needed"
@@ -86,6 +86,10 @@ Huffman coding tree:
             2 m
             2 d
         5 e
+
+================================================================================
+EXTRA CREDIT OPTION 2: HUFFMAN TREE BIT ENCODING
+================================================================================
 
 Char Frequency Encoded bits
 _   2  011

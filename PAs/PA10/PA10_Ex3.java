@@ -7,13 +7,13 @@ import net.datastructures.Position;
 import java.util.Scanner;
 
 /**
- * PA10 - Exercise 3: Huffman Tree (with Extra Credit Option 2)
+ * PA10 - Exercise 3: Huffman Tree (Standard)
  * Author: Aiden Wang
  */
 public class PA10_Ex3 {
 
     public static void main(String[] args) {
-        System.out.println("Modified by: Aiden Wang\n");
+        System.out.println("Author: Aiden Wang\n");
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter text: ");
@@ -31,9 +31,6 @@ public class PA10_Ex3 {
         HuffmanTree ht = new HuffmanTree(text);
         System.out.println("Huffman coding tree:");
         ht.printTree();
-        
-        System.out.println("\n");
-        ht.printEncoding(text);
     }
 }
 
@@ -51,10 +48,8 @@ class FreqChar {
 
 class HuffmanTree {
     private LinkedBinaryTree<FreqChar> tree;
-    private String[] prefixCodes;
 
     public HuffmanTree(String text) {
-        // Using basic array instead of HashMap
         int[] freqMap = new int[128];
         for (int i = 0; i < text.length(); i++) {
             freqMap[text.charAt(i)]++;
@@ -86,23 +81,6 @@ class HuffmanTree {
         } else {
             tree = new LinkedBinaryTree<>();
         }
-        
-        // Using basic array instead of TreeMap
-        prefixCodes = new String[128];
-        if (!tree.isEmpty()) {
-            buildCodes(tree.root(), "");
-        }
-    }
-
-    private void buildCodes(Position<FreqChar> p, String code) {
-        if (p == null) return;
-        FreqChar fc = p.getElement();
-        if (fc.isLeaf) {
-            prefixCodes[fc.c] = code;
-        } else {
-            if (tree.left(p) != null) buildCodes(tree.left(p), code + "0");
-            if (tree.right(p) != null) buildCodes(tree.right(p), code + "1");
-        }
     }
 
     public void printTree() {
@@ -126,28 +104,5 @@ class HuffmanTree {
         
         if (tree.left(p) != null) printTree(tree.left(p), depth + 1);
         if (tree.right(p) != null) printTree(tree.right(p), depth + 1);
-    }
-
-    public void printEncoding(String text) {
-        System.out.println("Char Frequency Encoded bits");
-        
-        int[] freqMap = new int[128];
-        for (int i = 0; i < text.length(); i++) {
-            freqMap[text.charAt(i)]++;
-        }
-        
-        for (int i = 0; i < 128; i++) {
-            if (freqMap[i] > 0) {
-                System.out.printf("%-4c%-3d%s\n", (char)i, freqMap[i], prefixCodes[i]);
-            }
-        }
-        
-        String encodedText = "";
-        for (int i = 0; i < text.length(); i++) {
-            encodedText += prefixCodes[text.charAt(i)];
-        }
-        
-        System.out.println("\nNumber of bits to encode message: " + encodedText.length());
-        System.out.println(encodedText);
     }
 }

@@ -6,7 +6,7 @@ package PA10;
  */
 public class PA10_Ex4 {
     public static void main(String[] args) {
-        System.out.println("Author: Aiden Wang\n");
+        System.out.println("Modified by: Aiden Wang\n");
         
         String X1 = "GTTCCTAATA";
         String Y1 = "CGATAATTGAGA";

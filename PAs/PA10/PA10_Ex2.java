@@ -8,7 +8,7 @@ public class PA10_Ex2 {
     static long comparisons = 0;
 
     public static void main(String[] args) {
-        System.out.println("Author: Aiden Wang\n");
+        System.out.println("Modified by: Aiden Wang\n");
 
         String[] texts = {
             "aaaaaaaaaaaaaaaaabbbbbbbbbbbbbb",

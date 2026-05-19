@@ -14,7 +14,7 @@ public class PA10_Ex1 {
     static Random rand = new Random();
 
     public static void main(String[] args) throws Exception {
-        System.out.println("Author: Aiden Wang\n");
+        System.out.println("Modified by: Aiden Wang\n");
 
         int[] small = {4, 3, 1, 0, 9, 8, 6, 7, 10, 5, 2};
         int n = small.length; // 11
