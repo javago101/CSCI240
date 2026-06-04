@@ -1,0 +1,7 @@
+Author: Aiden Wang
+Exercise 3: File I/O Performance (Output Tests)
+
+--- Write Tests ---
+a. Write text file (one by one): 49.772 ms
+b. Write binary file (one by one): 197.372416 ms
+c. Write binary file (256 chunked): 6.794458 ms

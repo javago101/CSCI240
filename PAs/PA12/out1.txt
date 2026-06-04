@@ -1,0 +1,9 @@
+Author: Aiden Wang
+Graph constructed from PA12Flights-1.txt.
+=========================================
+Cheapest flight from LAX to JFK: LAX, $199 --> SEA, $179 --> ORD, $179 --> BOS, $99 --> JFK
+Total Cost: $656
+
+Cheapest flight from JFK to LAX: JFK, $49 --> MIA, $50 --> MSY, $190 --> LAX
+Total Cost: $289
+

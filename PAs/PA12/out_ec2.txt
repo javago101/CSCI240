@@ -1,0 +1,11 @@
+Author: Aiden Wang
+Extra Credit 2: File I/O Performance (Input Tests)
+
+--- Read Tests ---
+a. Read text file (one by one): 180.694958 ms
+b. Read binary file (one by one): 78.515792 ms
+c. Read binary file (256 chunked): 4.737125 ms
+
+--- Verification ---
+Original array: First 5 = 54044, 14108, 79294, 29649, 25260 | Last 5 = 19526, 10160, 37114, 71124, 51145
+Bin(256)read:   First 5 = 54044, 14108, 79294, 29649, 25260 | Last 5 = 19526, 10160, 37114, 71124, 51145

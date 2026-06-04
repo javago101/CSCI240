@@ -1,0 +1,9 @@
+Author: Aiden Wang
+Exercise 2: Prim's Minimum Spanning Tree
+
+MST Edges:
+(C, D) cost: 2
+(C, E) cost: 3
+(A, B) cost: 3
+(A, C) cost: 4
+Total MST Cost: 12
